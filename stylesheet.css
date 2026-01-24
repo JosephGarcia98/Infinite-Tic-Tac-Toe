@@ -1,0 +1,76 @@
+body {
+	display: flex;
+	flex-direction: column; 
+	align-items: center;    
+	justify-content: center; 
+	height: 100vh;
+	background-color: rgb(106, 90, 205);
+	font-family: "Poppins", Arial, sans-serif;
+}
+
+h1,h2{
+	color: white;
+}
+
+.board{
+	display: grid;
+	grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    position: relative;
+}
+
+.box{
+	border: 2px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 100px;
+	cursor: pointer;
+	border-color: white;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+	color: white;
+}
+
+.box:hover{
+	background-color: rgba(255,255,255,0.3);
+}
+
+button{
+	margin: 20px;
+	border: none;
+	border-radius: 8px;
+	background-color: black;
+	color: white;
+	padding: 10px 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+table, tr, th{
+	color: white;
+	border: 1px solid white;
+	border-collapse: collapse;
+	font-size:15px;
+}
+
+th{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+}
+
+.box:nth-child(1),.box:nth-child(2),.box:nth-child(3){
+	border-top:none;
+}
+
+.box:nth-child(1),.box:nth-child(4),.box:nth-child(7){
+	border-left:none;
+}
+
+.box:nth-child(3),.box:nth-child(6),.box:nth-child(9){
+	border-right:none;
+}
+
+.box:nth-child(7),.box:nth-child(8),.box:nth-child(9){
+	border-bottom:none;
+}
