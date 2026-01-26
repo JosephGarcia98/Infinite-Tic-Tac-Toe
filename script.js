@@ -99,13 +99,11 @@ function minimaxDecision(gameBoard) {
 	let emptyCellList = getValidMovies(gameBoard);
 	let bestMove = null;
 	let cutoff = Infinity;
-
 	for(let row of emptyCellList){
 		let alpha = -Infinity;
 		let beta = Infinity;
 		let copyBoard = [...gameBoard];
 		updateBoard(row, "O", copyBoard);
-
 		let utility = minValue(copyBoard, alpha, beta, cutoff);
 		if(utility > currentUtility){
 			currentUtility = utility;
@@ -118,10 +116,7 @@ function minimaxDecision(gameBoard) {
 //place a X for computer to simulate player
 //returns index of worst possible move for computer
 function minValue(gameBoard, alpha, beta){
-	if(isGameOver(gameBoard)){
-		return scoreGame(gameBoard);
-	}
-
+	if(isGameOver(gameBoard)) return scoreGame(gameBoard);
 	let value = Infinity;
 	let list = getValidMovies(gameBoard);
 
@@ -148,10 +143,7 @@ function minValue(gameBoard, alpha, beta){
 //plays a move for computer
 //returns index of best possible move
 function maxValue(gameBoard, alpha, beta){
-	if(isGameOver(gameBoard)){
-		return scoreGame(gameBoard);
-	}
-
+	if(isGameOver(gameBoard)) return scoreGame(gameBoard);
 	let value = -Infinity;
 	let list = getValidMovies(gameBoard);
 
@@ -195,12 +187,8 @@ function updateBoard(move, player, board){
 //return -1 for player simulated moves
 function scoreGame(board){
 	let winner = whoWon(board);
-	if (winner === "O"){
-		return 1;
-	}
-	if (winner === "X"){
-		return -1;
-	}
+	if (winner === "O") return 1;
+	if (winner === "X") return -1;
 	return 0;
 } 
 
@@ -224,13 +212,9 @@ function isGameOver(board){
 //when the player clicks the boxes event
 boxes.forEach(box => {
     box.addEventListener("click", () => {
-    	if(!gameActive){
-    		return;
-    	}
+    	if(!gameActive) return;
         const index = box.dataset.index;
-        if(currBoard[index] !== "" && !isOldest(index,"X")){
-        	return;
-        }
+        if(currBoard[index] !== "" && !isOldest(index,"X")) return;
         if(isOldest(index,"X")){
         	boxes[index]="";
         	boxes[index].style.color = "white";
