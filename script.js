@@ -28,21 +28,28 @@ function highlightOldestX() {
     }
 }
 
+//checks if the index is the oldest piece 
+function isOldest(index,player){
+	if(player === "X"){
+		return xAge[0] === index;
+	}else if(player === "O"){
+		return oAge[0] === index;
+	}
+	return false;
+}
+
 //checks if there is a 3 in a row and highlights them to gold
 function checkGameOver(){
 	for (let condition of winsCond) {
 		const [a, b, c] = condition;
-
 		if (currBoard[a] &&
 			currBoard[a] === currBoard[b] &&
 			currBoard[a] === currBoard[c]) {
 			boxes[a].style.color = "gold";
 			boxes[b].style.color = "gold";
 			boxes[c].style.color = "gold";
-
 			curTurn.textContent = `${currBoard[a]} wins!`;
 			gameActive = false;
-
 			if (currBoard[a] === "X") {
 				xWins++;
 			} else {
@@ -60,6 +67,7 @@ function checkGameOver(){
 //starts the decision making
 function computerMove() {
     if (!gameActive) return; 
+    curTurn.textContent = "Player X's turn";
     let boardCopy = [...currBoard];
     let move = minimaxDecision(boardCopy);
     if (move !== null && gameActive) {  
@@ -216,12 +224,22 @@ function isGameOver(board){
 //when the player clicks the boxes event
 boxes.forEach(box => {
     box.addEventListener("click", () => {
+    	if(!gameActive){
+    		return;
+    	}
         const index = box.dataset.index;
-        if (!gameActive || currBoard[index] !== "") return;
+        if(currBoard[index] !== "" && !isOldest(index,"X")){
+        	return;
+        }
+        if(isOldest(index,"X")){
+        	boxes[index]="";
+        	boxes[index].style.color = "white";
+        	boxes[index].textContent = "";
+        }
         placeMove(index, "X");
         checkGameOver();
-        highlightOldestX();
         if (gameActive) {
+        	highlightOldestX();
             curTurn.textContent = "Computer Thinking ...";
             setTimeout(() => {
                 if (!gameActive) return; 
