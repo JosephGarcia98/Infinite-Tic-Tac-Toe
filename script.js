@@ -2,29 +2,27 @@
 const boxes = document.querySelectorAll(".box");//for each tictactoe box
 const curTurn = document.getElementById("status");//current turn
 const rBtn = document.getElementById("reset");//reset button
+const MAX_ACTIVE_PIECES = 3;
 
 //game states
-let xWins = 0;//how many wins x has
-let oWins = 0;//how many wins 0 has
+let xWins = 0;//how many wins X has
+let oWins = 0;//how many wins O has
 let drawCount = 0;//how many draws needed only if not infinite 
 let gameActive = true;//check if game is still active 
 let currBoard = Array(9).fill("");//current board look
-let xAge = [];//tracks x move and oldest 
-let oAge =[];//tracks 0 move and oldest 
+let xAge = [];//tracks X move and oldest 
+let oAge =[];//tracks O move and oldest 
+let curPlayer = "X"
+let singlePlayer = false;//if true computer plays
 
 //all winning moves
-const winsCond = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+const WINNING_COMBO = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
 //highlights oldest piece for player before deleting 
-function highlightOldestX() {
-    boxes.forEach((box, i) => {
-        if (currBoard[i] && box.style.color !== "gold") {
-            box.style.color = "white";
-        }
-    });
-    if (xAge.length === 3) {
-        let oldest = xAge[0];
-        boxes[oldest].style.color = "red";
+function highlightOldest(player) {
+    let ageArray = player === "X" ? xAge : oAge;
+    if (ageArray.length === MAX_ACTIVE_PIECES) {
+        boxes[ageArray[0]].style.color = "red";
     }
 }
 
@@ -38,9 +36,16 @@ function isOldest(index,player){
 	return false;
 }
 
+//Clears a box
+function clearBox(index){
+	currBoard[index] = "";
+	boxes[index].textContent = "";
+	boxes[index].style.color = "white";
+}
+
 //checks if there is a 3 in a row and highlights them to gold
 function checkGameOver(){
-	for (let condition of winsCond) {
+	for (let condition of WINNING_COMBO) {
 		const [a, b, c] = condition;
 		if (currBoard[a] &&
 			currBoard[a] === currBoard[b] &&
@@ -71,32 +76,30 @@ function computerMove() {
     let boardCopy = [...currBoard];
     let move = minimaxDecision(boardCopy);
     if (move !== null && gameActive) {  
+    	if (isOldest(move, "O")) return;
         placeMove(move, "O");
         checkGameOver();
-        highlightOldestX();
+        highlightOldest(curPlayer);
     }
 }
 
 //in charge of placing the X and O on board
 function placeMove(index, player) {
     let ageArray = player === "X" ? xAge : oAge;
-    if (ageArray.length === 3) {
+    if (ageArray.length === MAX_ACTIVE_PIECES) {
         let oldIndex = ageArray.shift();
-        currBoard[oldIndex] = "";
-        boxes[oldIndex].textContent = "";
-        boxes[oldIndex].style.color = "white";
+        clearBox(oldIndex);
     }
     currBoard[index] = player;
     boxes[index].textContent = player;
     ageArray.push(index);
 }
 
-//if logic doesnt work check tictactoe.java code
 //decide on best possible move for computer to make
 //prunes all bad moves
 function minimaxDecision(gameBoard) {
 	let currentUtility = -Infinity;
-	let emptyCellList = getValidMovies(gameBoard);
+	let emptyCellList = getValidMoves(gameBoard);
 	let bestMove = null;
 	let cutoff = Infinity;
 	for(let row of emptyCellList){
@@ -118,7 +121,7 @@ function minimaxDecision(gameBoard) {
 function minValue(gameBoard, alpha, beta){
 	if(isGameOver(gameBoard)) return scoreGame(gameBoard);
 	let value = Infinity;
-	let list = getValidMovies(gameBoard);
+	let list = getValidMoves(gameBoard);
 
 	for (let move of list){
 		let copyBoard = [...gameBoard];
@@ -145,7 +148,7 @@ function minValue(gameBoard, alpha, beta){
 function maxValue(gameBoard, alpha, beta){
 	if(isGameOver(gameBoard)) return scoreGame(gameBoard);
 	let value = -Infinity;
-	let list = getValidMovies(gameBoard);
+	let list = getValidMoves(gameBoard);
 
 	for (let move of list){
 		let copyBoard = [...gameBoard];
@@ -168,8 +171,7 @@ function maxValue(gameBoard, alpha, beta){
 }
 
 //call to get a empty spots or possible moves
-//accidentally called it movies instead of moves
-function getValidMovies(board){
+function getValidMoves(board){
 	let moves = [];
 	for(let i=0; i < 9; i++){
 		if(board[i] === "") moves.push(i);
@@ -194,7 +196,7 @@ function scoreGame(board){
 
 //check who won the game for scoreboard
 function whoWon(board){
-	for(let [a,b,c] of winsCond) {
+	for(let [a,b,c] of WINNING_COMBO) {
 		if (board[a] && board[a] === board[b] && board[a] === board[c]){
 			return board[a];
 		}
@@ -213,22 +215,31 @@ function isGameOver(board){
 boxes.forEach(box => {
     box.addEventListener("click", () => {
     	if(!gameActive) return;
-        const index = box.dataset.index;
-        if(currBoard[index] !== "" && !isOldest(index,"X")) return;
-        if(isOldest(index,"X")){
-        	boxes[index]="";
-        	boxes[index].style.color = "white";
-        	boxes[index].textContent = "";
+        const index = Number(box.dataset.index);
+        if(currBoard[index] !== "" && !isOldest(index,curPlayer)) return;
+        if(isOldest(index,curPlayer)){
+        	xAge.shift();
+        	clearBox(index);
         }
-        placeMove(index, "X");
+        placeMove(index, curPlayer);
         checkGameOver();
         if (gameActive) {
-        	highlightOldestX();
-            curTurn.textContent = "Computer Thinking ...";
-            setTimeout(() => {
-                if (!gameActive) return; 
-                computerMove();
-            }, 200);
+        	highlightOldest(curPlayer);
+        	if (singlePlayer) {
+        		if (curPlayer === "X") {
+                curTurn.textContent = "Computer Thinking ...";
+                curPlayer = "O"; 
+                setTimeout(() => {
+                    if (!gameActive) return;
+                    computerMove(); 
+                    curPlayer = "X"; 
+                    curTurn.textContent = `Player ${curPlayer}'s turn`;
+                }, 200);
+            }
+        }else{
+        	curPlayer = curPlayer === "X" ? "O" : "X";
+        	curTurn.textContent = `Player ${currentPlayer}'s turn`;
+        	}
         }
     });
 });
@@ -244,5 +255,5 @@ rBtn.addEventListener("click", () => {
     });
     gameActive = true;
     curTurn.textContent = "Player X's turn";
-    highlightOldestX();
+    highlightOldest(curPlayer);
 });
