@@ -36,6 +36,7 @@ h1,h2{
 }
 
 button{
+	display: flex;
 	margin: 20px;
 	border: none;
 	border-radius: 8px;
@@ -46,7 +47,13 @@ button{
 	cursor: pointer;
 }
 
+.button-area{
+	display: flex;
+	justify-content: center;
+}
+
 table, tr, th{
+	margin-top: 20px;
 	color: white;
 	border: 1px solid white;
 	border-collapse: collapse;
