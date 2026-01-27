@@ -5,6 +5,8 @@ const rBtn = document.getElementById("reset");//reset button
 const mBtn = document.getElementById("playerMode");//reset button
 const MAX_ACTIVE_PIECES = 3;
 mBtn.textContent = "Single Player";
+xPlayer.textContent = "Player X Wins"
+oPlayer.textContent = "Player O Wins"
 
 //game states
 let xWins = 0;//how many wins X has
@@ -266,5 +268,6 @@ mBtn.addEventListener("click", () => {
 	if(currBoard.every(cell => cell === "") || gameActive === false){
 		singlePlayer = !singlePlayer; 
 		mBtn.textContent = singlePlayer ? "Single Player" : "Two Player";
+		oPlayer.textContent = singlePlayer ? "PLayer O Wins" : "Computer Wins";
 	}
 });
