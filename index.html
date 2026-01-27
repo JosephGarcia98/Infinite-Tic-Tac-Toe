@@ -8,10 +8,6 @@
 	</head>
 	<body>
 		<h1>Infinte Tic-Tac-Toe Game</h1>
-		<label class="switch">
-			<input type="checkbox">
-			<span class="slider"></span>
-		</label>
 		<h2 id="status">Player X's turn</h2>
 		<div class="board">
 		<div class="box" data-index="0"></div>
@@ -25,7 +21,6 @@
 		<div class="box" data-index="8"></div>
 	</div>
 		</div>
-		<button id="reset">Reset</button>
 		<table>
 			<tr>
 				<th>Player Wins</th>
@@ -36,6 +31,10 @@
 				<th><span id="oWins">0</span></p></th>
 			</tr>
 		</table>
+		<div class="button-area">
+			<button id="playerMode"></button>
+			<button id="reset">Reset</button>
+		</div>
 	</body>
 	<script src="script.js"></script>
 	</html>
