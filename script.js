@@ -269,5 +269,9 @@ mBtn.addEventListener("click", () => {
 		singlePlayer = !singlePlayer; 
 		mBtn.textContent = singlePlayer ? "Single Player" : "Two Player";
 		oPlayer.textContent = singlePlayer ? "PLayer O Wins" : "Computer Wins";
+		xWins = oWins =0;
+		document.getElementById("xWins").textContent = xWins;
+		document.getElementById("oWins").textContent = oWins;
+		curPlayer = "X";
 	}
 });
