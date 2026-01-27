@@ -2,7 +2,9 @@
 const boxes = document.querySelectorAll(".box");//for each tictactoe box
 const curTurn = document.getElementById("status");//current turn
 const rBtn = document.getElementById("reset");//reset button
+const mBtn = document.getElementById("playerMode");//reset button
 const MAX_ACTIVE_PIECES = 3;
+mBtn.textContent = "Single Player";
 
 //game states
 let xWins = 0;//how many wins X has
@@ -12,8 +14,8 @@ let gameActive = true;//check if game is still active
 let currBoard = Array(9).fill("");//current board look
 let xAge = [];//tracks X move and oldest 
 let oAge =[];//tracks O move and oldest 
-let curPlayer = "X"
-let singlePlayer = false;//if true computer plays
+let curPlayer = "X"//the current player either X or O
+let singlePlayer = true;//if true computer plays
 
 //all winning moves
 const WINNING_COMBO = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
@@ -256,4 +258,13 @@ rBtn.addEventListener("click", () => {
     gameActive = true;
     curTurn.textContent = "Player X's turn";
     highlightOldest(curPlayer);
+});
+
+//allows players to switch between single and two player mode
+//only allows it at the end or start of a game
+mBtn.addEventListener("click", () => {
+	if(currBoard.every(cell => cell === "") || gameActive === false){
+		singlePlayer = !singlePlayer; 
+		mBtn.textContent = singlePlayer ? "Single Player" : "Two Player";
+	}
 });
