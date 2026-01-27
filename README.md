@@ -1,5 +1,6 @@
 ## Infinite Tic-Tac-Toe
-
+<br/>
+## info
 A new way to play Tic-Tac-Toe. When a player places there fourth piece their oldest move will disappear. Allowing the game to not end in a draw and continuously go on.
 
 ## Current features
