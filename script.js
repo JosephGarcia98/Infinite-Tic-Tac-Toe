@@ -3,10 +3,13 @@ const boxes = document.querySelectorAll(".box");//for each tictactoe box
 const curTurn = document.getElementById("status");//current turn
 const rBtn = document.getElementById("reset");//reset button
 const mBtn = document.getElementById("playerMode");//reset button
+const settingBtn = document.getElementById("settingBtn");
+const settingPanel = document.getElementById("settingPanel");
+const closeSetting = document.getElementById("closeSetting");
 const MAX_ACTIVE_PIECES = 3;
 mBtn.textContent = "Single Player";
-xPlayer.textContent = "Player X Wins"
-oPlayer.textContent = "Player O Wins"
+const xPlayer = document.getElementById("xPlayer");
+const oPlayer = document.getElementById("oPlayer");
 
 //game states
 let xWins = 0;//how many wins X has
@@ -18,6 +21,7 @@ let xAge = [];//tracks X move and oldest
 let oAge =[];//tracks O move and oldest 
 let curPlayer = "X"//the current player either X or O
 let singlePlayer = true;//if true computer plays
+let infiniteMode= true;//decide if the game well be regular or infinite
 
 //all winning moves
 const WINNING_COMBO = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
@@ -57,12 +61,17 @@ function checkGameOver(){
 			boxes[a].style.color = "gold";
 			boxes[b].style.color = "gold";
 			boxes[c].style.color = "gold";
-			curTurn.textContent = `${currBoard[a]} wins!`;
 			gameActive = false;
 			if (currBoard[a] === "X") {
 				xWins++;
+				curTurn.textContent = `Player ${curPlayer} wins!`;
 			} else {
 				oWins++;
+				if(singlePlayer){
+					curTurn.textContent = `Computer wins!`;
+				}else{
+					curTurn.textContent = `Player ${curPlayer} wins!`;
+				}
 			}
 			break;
 		}
@@ -76,13 +85,13 @@ function checkGameOver(){
 //starts the decision making
 function computerMove() {
     if (!gameActive) return; 
-    curTurn.textContent = "Player X's turn";
     let boardCopy = [...currBoard];
     let move = minimaxDecision(boardCopy);
     if (move !== null && gameActive) {  
     	if (isOldest(move, "O")) return;
         placeMove(move, "O");
         checkGameOver();
+        if(gameActive)
         highlightOldest(curPlayer);
     }
 }
@@ -231,18 +240,19 @@ boxes.forEach(box => {
         	highlightOldest(curPlayer);
         	if (singlePlayer) {
         		if (curPlayer === "X") {
-                curTurn.textContent = "Computer Thinking ...";
+                curTurn.textContent = 'Computer Thinking ...';
                 curPlayer = "O"; 
                 setTimeout(() => {
                     if (!gameActive) return;
                     computerMove(); 
                     curPlayer = "X"; 
+                    if(gameActive)
                     curTurn.textContent = `Player ${curPlayer}'s turn`;
                 }, 200);
             }
         }else{
         	curPlayer = curPlayer === "X" ? "O" : "X";
-        	curTurn.textContent = `Player ${currentPlayer}'s turn`;
+        	curTurn.textContent = `Player ${curPlayer}'s turn`;
         	}
         }
     });
@@ -264,14 +274,23 @@ rBtn.addEventListener("click", () => {
 
 //allows players to switch between single and two player mode
 //only allows it at the end or start of a game
+//also changes the scoreboard
 mBtn.addEventListener("click", () => {
 	if(currBoard.every(cell => cell === "") || gameActive === false){
 		singlePlayer = !singlePlayer; 
 		mBtn.textContent = singlePlayer ? "Single Player" : "Two Player";
-		oPlayer.textContent = singlePlayer ? "PLayer O Wins" : "Computer Wins";
+		oPlayer.textContent = singlePlayer ? "Computer Wins:" : "Player O Wins:";
 		xWins = oWins =0;
 		document.getElementById("xWins").textContent = xWins;
 		document.getElementById("oWins").textContent = oWins;
 		curPlayer = "X";
 	}
+});
+
+settingBtn.addEventListener("click", () =>{
+	settingPanel.classList.toggle("hidden");
+});
+
+closeSetting.addEventListener("click", () =>{
+	settingPanel.classList.toggle("hidden");
 });
