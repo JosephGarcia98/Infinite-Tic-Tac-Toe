@@ -16,11 +16,11 @@ An AI with minimax pruning
 Tracking players’ wins  
 Infinity-play Tic-Tac-Toe  
 Converted Javascript into modules  
+The ability to turn off Infinite and play regular Tic-Tac-Toe   
+Maybe add a menu rather than buttons   
 
-## Future Updates
-The ability to turn off Infinite and play regular Tic-Tac-Toe  
-Make the oldest piece blink instead of turn red  
-Maybe add a menu rather than buttons  
+## Future Updates 
+Make the oldest piece blink instead of turn red   
 Make the UI look better  
 
 ## Goals
