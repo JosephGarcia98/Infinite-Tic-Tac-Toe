@@ -6,6 +6,7 @@ Single or two-player mode
 An AI with minimax pruning  
 Tracking players’ wins  
 Infinity-play Tic-Tac-Toe  
+Converted Javascript into modules  
 
 ## Future Updates
 The ability to turn off Infinite and play regular Tic-Tac-Toe  
