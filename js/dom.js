@@ -1,0 +1,16 @@
+export const boxes = document.querySelectorAll(".box");
+export const curTurn = document.getElementById("status");
+export const rBtn = document.getElementById("reset");
+export const mBtn = document.getElementById("playerMode");
+export const settingBtn = document.getElementById("settingBtn");
+export const clearScoreBtn = document.getElementById("clearScoreBtn");
+export const infiniteBtn = document.getElementById("infiniteBtn");
+export const settingPanel = document.getElementById("settingPanel");
+export const closeSetting = document.getElementById("closeSetting");
+export const xPlayer = document.getElementById("xPlayer");
+export const oPlayer = document.getElementById("oPlayer");
+export const drawsLabel = document.getElementById("drawsLabel");
+export const drawCountEl = document.getElementById("drawCount");
+mBtn.textContent = "Single\nPlayer";
+infiniteBtn.textContent = "Infinite\nMode";
+clearScoreBtn.textContent = "Clear\nScores";
