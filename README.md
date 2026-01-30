@@ -21,7 +21,7 @@ Maybe add a menu rather than buttons
 
 ## Future Updates 
 Make the oldest piece blink instead of turn red   
-Make the UI look better  
+For game to run smooth
 
 ## Goals
 Implement Node.js for a backend  
