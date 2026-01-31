@@ -1,9 +1,8 @@
 import { gameState, MAX_ACTIVE_PIECES, WINNING_COMBO, } from './gamestate.js';
 import { boxes, curTurn, drawCountEl } from './dom.js';
 
-
-
 //highlights oldest piece for player before deleting 
+//remove for blinking 
 export function highlightOldest(player) {
     if(!gameState.infiniteMode) return;
     let ageArray = player === "X" ? gameState.xAge : gameState.oAge;
