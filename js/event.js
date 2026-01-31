@@ -4,6 +4,7 @@ import { computerMove } from './ai.js';
 import { gameState } from './gamestate.js'; 
 
 export function allEvents(){
+	//when a box is clicked
 	boxes.forEach(box => {
  	   box.addEventListener("click", () => {
  	   		if(!gameState.gameActive) return;
@@ -55,6 +56,7 @@ export function allEvents(){
 		updateScoreboard();
 	});
 
+	//changes from infinite to finite
 	infiniteBtn.addEventListener("click", () =>{
 		gameState.infiniteMode = !gameState.infiniteMode;
 		infiniteBtn.textContent = gameState.infiniteMode ? "Infinite\nMode" : "Finite\nMode";
@@ -67,6 +69,7 @@ export function allEvents(){
 		updateScoreboard();
 	});
 
+	//sets scoreboard to 0
 	clearScoreBtn.addEventListener("click", () =>{
 		gameState.xWins = 0;
 		gameState.oWins = 0;
