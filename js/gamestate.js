@@ -3,7 +3,7 @@ xWins: 0,//how many wins X has
 oWins: 0,//how many wins O has
 drawCount: 0,//how many draws needed only if not infinite 
 gameActive: true,//check if game is still active 
-currBoard: Array(MAX_BOARD).fill(""),//current board look
+currBoard: Array(9).fill(""),//current board look
 xAge: [],//tracks X move and oldest 
 oAge: [],//tracks O move and oldest 
 curPlayer: "X",//the current player either X or O
