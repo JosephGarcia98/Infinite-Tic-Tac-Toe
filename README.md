@@ -7,7 +7,7 @@ Node.js(version 18 or higher recommended)
 ## How to run  
 git clone https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe.git   
 cd Infinite-Tic-Tac-Toe   
-npx start  
+npx serve   
 Copy & paste server into browser
 
 ## Current Features
