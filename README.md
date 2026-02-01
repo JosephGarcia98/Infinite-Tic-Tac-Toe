@@ -19,3 +19,9 @@ Download here:
   
   
 ## Run from Source 
+Install Node.js: [https://nodejs.org/](https://nodejs.org/)
+```bash
+git clone https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe.git
+cd Infinite-Tic-Tac-Toe
+npm install
+npm start
