@@ -18,10 +18,3 @@ Infinity-play Tic-Tac-Toe
 Converted Javascript into modules  
 The ability to turn off Infinite and play regular Tic-Tac-Toe   
 Maybe add a menu rather than buttons   
-
-## Future Updates 
-Make the oldest piece blink instead of turn red   
-
-## Goals
-Implement Node.js for a backend  
-Package as a standalone app  
