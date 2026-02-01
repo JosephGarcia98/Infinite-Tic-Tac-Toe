@@ -11,7 +11,7 @@ The ability to turn off Infinite and play regular Tic-Tac-Toe
 Maybe add a menu rather than buttons   
 
 ## Play the Prebuilt Mac App
-Download here:  
+Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases
     
 ## Images 
 <img width="1440" height="900" alt="Screenshot 2026-02-01 at 3 58 32 AM" src="https://github.com/user-attachments/assets/49f1128f-126f-42d9-9569-60b16e093a88" />
