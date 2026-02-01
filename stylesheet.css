@@ -123,3 +123,13 @@ button:active{
 .box:nth-child(7),.box:nth-child(8),.box:nth-child(9){
 	border-bottom:none;
 }
+
+.blink-red{
+	color: red;
+	animation: blink 1s infinite;
+}
+
+@keyframes blink{
+	0%, 49%, 100% {opacity: 1;}
+	50%, 99% {opacity: 0;}
+}
