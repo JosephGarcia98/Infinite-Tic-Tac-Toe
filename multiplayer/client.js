@@ -1,4 +1,3 @@
-//everyhthing is commented out so came can run local
 // const socket = io();
 // socket.on("move", (data) => {
 //   console.log("Received move:", data);
