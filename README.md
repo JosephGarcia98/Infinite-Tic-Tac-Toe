@@ -11,6 +11,7 @@ Infinity-play Tic-Tac-Toe
 Converted Javascript into modules  
 The ability to turn off Infinite and play regular Tic-Tac-Toe   
 Maybe add a menu rather than buttons   
+
 ---
 
 ## Future Features    
@@ -18,14 +19,17 @@ Combine with other games with a game engine
 Leaderboards    
 Current version focuses on Infinite Tic-Tac-Toe with single-player and multiplayer mode
 Stay tuned for full game   
+
 ---
   
 ## Play the Prebuilt Mac App
 Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases  
+
 ---
 
 ## Play Live Demo   
 Here:https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe/
+
 ---
     
 ## Images 
