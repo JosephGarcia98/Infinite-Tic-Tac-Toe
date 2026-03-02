@@ -14,9 +14,9 @@ The ability to turn off Infinite and play regular Tic-Tac-Toe
 ---
 
 ## Future Features   
-Fully functional multiplayer 
-Create and join rooms   
-Menu for multiplayer   
+Fully functional multiplayer    
+Create and join rooms     
+Menu for multiplayer      
 
 ---
   
