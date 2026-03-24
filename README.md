@@ -27,7 +27,7 @@ A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI
   - Packaged as a standalone desktop application
     
 ## Play the Prebuilt Mac App
-Download here:
+Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases/tag/v1.0.0
 
 ## Play Live Demo   
 Here:
