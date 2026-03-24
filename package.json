@@ -1,0 +1,43 @@
+{
+  "name": "infinite-tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Infinite Tic Tac Toe",
+  "main": "./electron/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "test": "jest",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "babel-jest": "^29.0.0",
+    "electron": "^40.1.0",
+    "electron-builder": "^26.8.1",
+    "electron-packager": "^17.1.2",
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^29.0.0"
+  },
+  "build": {
+    "appId": "com.yourname.infinite-tictactoe",
+    "productName": "Infinite Tic Tac Toe",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "public/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "public/assets/appIcon.icns",
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "icon": "public/assets/appIcon.ico",
+      "target": ["nsis", "zip"]
+    }
+  }
+}
