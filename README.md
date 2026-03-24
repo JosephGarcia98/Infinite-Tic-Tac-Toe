@@ -1,13 +1,10 @@
 ## Infinite Tic-Tac-Toe
 A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI ran with Alpha-Beta Pruning and Minimax
----
 
 ## Overview 
 **Infinite Tic-Tac-Toe** introduces a unique twist to the classic game:
 -   Each player can only have **3 pieces** on the board at once
 -   When the **4th piece** is placed the  **oldest move is removed automatically**
-
----
 
 ## Features 
 - **Infinite or Classic Mode**
@@ -30,12 +27,10 @@ A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI
   - Packaged as a standalone desktop application
     
 ## Play the Prebuilt Mac App
-Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases  
-
----
+Download here:
 
 ## Play Live Demo   
-Here:https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe/
+Here:
     
 ## Images
 ![Screenshot 1](public/images/Image1.png)
