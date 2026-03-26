@@ -31,8 +31,7 @@ Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases/ta
 
 ## Play Live Demo   
 This project uses Electron, so it cannot be run directly in the browser      
-Here is a web based verion with all the features:      
-Here:https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe-demo/
+Here is a web based verion with all the features: https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe-demo/
     
 ## Images
 ![Screenshot 1](public/images/Image1.png)
