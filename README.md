@@ -91,7 +91,7 @@ The project uses Jest for unti for testing both game logic and AI
   - Move aging system (xAge, oAge)
   - Oldest move detection (isOldest)
 
-## Test yourself 
+## Test Yourself 
 ```bash
 git clone https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe.git
 cd Infinite-Tic-Tac-Toe
