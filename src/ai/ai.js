@@ -25,10 +25,10 @@ export function minimaxDecision(gameBoard) {
 	let currentUtility = -Infinity;
 	let emptyCellList = getValidMoves(gameBoard);
 	let bestMove = null;
-	let cutoff = Infinity;
+	let cutoff = 5;
+	let alpha = -Infinity;
+	let beta = Infinity;
 	for(let row of emptyCellList){
-		let alpha = -Infinity;
-		let beta = Infinity;
 		let copyBoard = [...gameBoard];
 		updateBoard(row, "O", copyBoard);
 		let utility = minValue(copyBoard, alpha, beta, cutoff);
@@ -42,15 +42,15 @@ export function minimaxDecision(gameBoard) {
 
 //min step of Minimax (simulates opponent "X")
 //attempts to minimize the score (worst outcome for AI)
-export function minValue(gameBoard, alpha, beta){
-	if(isGameOver(gameBoard)) return scoreGame(gameBoard);
+export function minValue(gameBoard, alpha, beta, cutoff){
+	if(isGameOver(gameBoard) || cutoff === 0) return scoreGame(gameBoard);
 	let value = Infinity;
 	let list = getValidMoves(gameBoard);
 
 	for (let move of list){
 		let copyBoard = [...gameBoard];
 		updateBoard(move, "X", copyBoard);
-		let utility = maxValue(copyBoard, alpha, beta);
+		let utility = maxValue(copyBoard, alpha, beta, cutoff-1);
 
 		if(value > utility){
 			value = utility;
@@ -69,15 +69,15 @@ export function minValue(gameBoard, alpha, beta){
 
 //max step of Minimax (simulates AI "O")
 //attempts to maximize the score (best outcome for AI)
-export function maxValue(gameBoard, alpha, beta){
-	if(isGameOver(gameBoard)) return scoreGame(gameBoard);
+export function maxValue(gameBoard, alpha, beta, cutoff){
+	if(isGameOver(gameBoard) || cutoff === 0) return scoreGame(gameBoard);
 	let value = -Infinity;
 	let list = getValidMoves(gameBoard);
 
 	for (let move of list){
 		let copyBoard = [...gameBoard];
 		updateBoard(move, "O", copyBoard);
-		let utility = minValue(copyBoard, alpha, beta);
+		let utility = minValue(copyBoard, alpha, beta, cutoff-1);
 
 		if(value < utility){
 			value = utility;
@@ -110,14 +110,35 @@ export function updateBoard(move, player, board){
 }
 
 //evaluates the board state and assigns a score:
-//+1 if AI ("O") wins
-//-1 if Player ("X") wins
-//0 ofr draw or neutral state
+//10 if AI won
+//-10 if opponent won
+//+5 if two O in a row
+//-7 if two X in a row
+//+4 if O is in center
+//-4 if X is in center
+//+1 for each corner of O
+//-1 for each corner of X
 export function scoreGame(board){
 	let winner = whoWon(board);
-	if (winner === "O") return 1;
-	if (winner === "X") return -1;
-	return 0;
+	if(winner === "O") return 10;
+	if(winner === "X") return -10;
+	let score = 0;
+	for(let [a,b,c] of WINNING_COMBO) {
+		let line = [board[a], board[b], board[c]];
+		let oCount = line.filter(v => v === "O").length;
+		let xCount = line.filter(v => v === "X").length;
+		let empty = line.filter(v => v === "").length;
+		if(oCount === 2 && empty === 1) score += 5;
+		if(xCount === 2 && empty === 1) score += 7;
+		if(board[4] === "O") score += 4;
+		if(board[4] === "X") score -= 4;
+	}
+	let corners = [0,2,6,8];
+		for(let i of corners){
+			if (board[i] === "O") score += 1;
+			if (board[i] === "X") score -= 1;
+	}
+	return score;
 } 
 
 //determines a win for the copied board
