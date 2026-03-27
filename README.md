@@ -35,7 +35,7 @@ Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases
 ---
 
 ## Play Live Demo   
-Here:https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe/
+Here: https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe-demo/
     
 ## Images
 ![Screenshot 1](public/images/Image1.png)
