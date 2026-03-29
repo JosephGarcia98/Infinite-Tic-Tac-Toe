@@ -7,8 +7,6 @@ A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI
 -   Each player can only have **3 pieces** on the board at once
 -   When the **4th piece** is placed the  **oldest move is removed automatically**
 
----
-
 ## Features 
 - **Infinite or Classic Mode**
   - Oldest move disappears after placing a 4th piece
@@ -31,8 +29,6 @@ A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI
     
 ## Play the Prebuilt Mac App
 Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases  
-
----
 
 ## Play Live Demo   
 Here: https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe-demo/
