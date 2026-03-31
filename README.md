@@ -1,6 +1,5 @@
-## Infinite Tic-Tac-Toe
+## Infinite Tic-Tac-Toe   
 A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI ran with Alpha-Beta Pruning and Minimax
----
 
 ## Overview 
 **Infinite Tic-Tac-Toe** introduces a unique twist to the classic game:
