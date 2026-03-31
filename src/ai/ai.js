@@ -1,6 +1,6 @@
 //imports respondible for:
 //game status
-//the winning comboc
+//the winning combo
 //game logic for moves to be played 
 import { gameState, WINNING_COMBO } from '../gamestate/gamestate.js';
 import { placeMove, isOldest, checkGameOver, highlightOldest } from '../gamestate/gamelogic.js';
@@ -110,7 +110,7 @@ export function updateBoard(move, player, board){
 }
 
 //evaluates the board state and assigns a score:
-//10 if AI won
+//+10 if AI won
 //-10 if opponent won
 //+5 if two O in a row
 //-7 if two X in a row
