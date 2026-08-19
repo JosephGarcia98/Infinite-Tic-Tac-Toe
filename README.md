@@ -30,7 +30,7 @@ A new way to play Tic-Tac-Toe with a dynamic “infinite play” mechanic and AI
 Download here:https://github.com/JosephGarcia98/Infinite-Tic-Tac-Toe/releases  
 
 ## Play Live Demo   
-This is a browser-based version of my Infinite Tic-Tac-Toe game. You may run into some UI problems on a phone or tablet. For the best experience, use a desktop or laptop. For the best possible experience play on Chrome.
+This is a browser-based version of my Infinite Tic-Tac-Toe game. You may run into some UI problems on a phone or tablet. For the best experience, use a desktop or laptop. For the best possible experience play on Chrome.        
 Here: https://josephgarcia98.github.io/Infinite-Tic-Tac-Toe-demo/
     
 ## Images
